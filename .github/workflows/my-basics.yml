@@ -29,8 +29,13 @@ jobs:
           echo "Package Name: ${{ env.Package_name }}"
           
       - name: List current folder
-        run: ls -la   
-
+        run: ls -la       
+#копируем весь репозитори
+      - name: Git clone my repo
+        uses: actions/checkout@1
+        
+      - name: List current folder
+        run: ls -la 
   my_deploy:
     runs-on: ubuntu-latest
     # Запуск второго джоба только после выполнения первого
@@ -43,3 +48,9 @@ jobs:
         run: |
           echo "Application: ${{ env.Application_name }}"
           echo "Package: ${{ env.Package_name }}"
+      - name: Lets some pakeges iof the are here1
+        run: aws --version 
+        
+      - name: Lets some pakeges iof the are here2
+        run: zip  
+    
