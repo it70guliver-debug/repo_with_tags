@@ -6,7 +6,7 @@ name: My-GitHubActions-Basics
 env:
   Application_name: "MyFlask"
   Package_name: "Flask-deploy-ver-${{ github.sha }}"
-  
+#устанавливаем тригер, пример при пуше в мейн  
 on:
   push:
     branches: [ "main" ]
@@ -40,17 +40,30 @@ jobs:
     runs-on: ubuntu-latest
     # Запуск второго джоба только после выполнения первого
     needs: my_testing
+    #Задаём переменные для этого джоба
+    env:
+      VAR1 : "This is job Level Variable1"
+      VAr2 : "This is job Level Variable2" 
     steps:
       - name: Print Hello Message in Deploy
         run: echo Hello World Deploy
-      
+
+      - name: Print env vars
+        run : |
+          echo "Var1 = ${{ env. VAR1 }}"
+          echo "Var2 = ${{ env. VAR2 }}"
+          echo "Var3 = $Local_VAR"
+          env:
+            Local_VAR: "This supper local var" 
+          
       - name: Show environment variables
         run: |
           echo "Application: ${{ env.Application_name }}"
           echo "Package: ${{ env.Package_name }}"
+          
       - name: Lets some pakeges iof the are here1
         run: aws --version 
         
       - name: Lets some pakeges iof the are here2
-        run: zip  
+        run: zip --version 
     
