@@ -1,6 +1,6 @@
-# This is a basic workflow to help you get started with Actions
+# GitHub Action Part1 - Basics
 
-name: My-Actions
+name: My-GitHubActions-Basics
 
 on:
   push:
@@ -19,6 +19,8 @@ jobs:
 
   my_deploy:
     runs-on: ubuntu-latest
+    #запуск второго джоба только после выполнения первого
+    needs: my_testing
     steps:
       - name: Print Hello Message
         run: echo Hello World Deploy
