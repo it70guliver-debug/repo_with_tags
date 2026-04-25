@@ -27,6 +27,9 @@ jobs:
           echo Hello Message2
           echo "Application Name: ${{ env.Application_name }}"
           echo "Package Name: ${{ env.Package_name }}"
+          
+      - name: List current folder
+        run: ls -la   
 
   my_deploy:
     runs-on: ubuntu-latest
