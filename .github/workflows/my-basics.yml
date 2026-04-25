@@ -43,7 +43,7 @@ jobs:
     #Задаём переменные для этого джоба
     env:
       VAR1 : "This is job Level Variable1"
-      VAr2 : "This is job Level Variable2" 
+      VAR2 : "This is job Level Variable2" 
     steps:
       - name: Print Hello Message in Deploy
         run: echo Hello World Deploy
