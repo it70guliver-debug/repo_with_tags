@@ -1,7 +1,11 @@
 # GitHub Action Part1 - Basics
 
 name: My-GitHubActions-Basics
-
+# Задаём глобальные переменные
+env:
+  Application_name: "MyFlask""
+  Package_name    : "Flask-deploy-ver-${{ github.sha }}"
+  
 on:
   push:
     branches: [ "main" ]
@@ -14,15 +18,21 @@ jobs:
   my_testing:
     runs-on: ubuntu-latest
     steps:
-      - name: Run a multi-line script
-        run: echo Hello, world!
+      - name: Print Hello Massage
+       run: echo Hello, world!
+        
+      - name: Execure few commands
+        run: |
+       echo Hello Message1
+       echo Hello Message2
+       echo "Application Name: ${{ env.Application_name }}"
 
   my_deploy:
     runs-on: ubuntu-latest
     #запуск второго джоба только после выполнения первого
     needs: my_testing
     steps:
-      - name: Print Hello Message
+      - name: Print Hello Message in Deploy
         run: echo Hello World Deploy
 
      
