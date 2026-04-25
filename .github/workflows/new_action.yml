@@ -6,12 +6,11 @@
 
 name: My-GitHubActionc_basics
 
-
 on:
   # Тригер срабатывает при пуше в мастер
   push:
     branches: [ "main" ]
- 
+ workflow_dispatch:
 jobs: #Что будет выполняться
   my_testing: #Название Jobs
    runs-on: ubuntu-latest #где будет выполняться
