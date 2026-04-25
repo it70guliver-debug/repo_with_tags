@@ -1,0 +1,28 @@
+# ---------------------------------------
+#GitHub Action Part-1 -Basics
+#
+#Copyleft (c) Vladimir P
+#-----------------------------------------
+
+name: My-GitHubActionc_basics
+
+
+on:
+  # Тригер срабатывает при пуше в мастер
+  push:
+    branches: [ "main" ]
+ 
+jobs: #Что будет выполняться
+  my_testing: #Название Jobs
+   runs-on: ubuntu-latest #где будет выполняться
+
+   steps: # шаги, команды
+   - name: Print Hello Massege # Имя шага
+     run : echo "Hello world from testing job"  # печатаем надпись 
+
+  my_deploy:
+      runs-on: ubuntu-latest
+       
+       steps: # шаги, команды
+   - name: Print Hello Massege # Имя шага
+     run : echo "Hello world from Deploy job"
