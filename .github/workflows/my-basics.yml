@@ -1,16 +1,16 @@
 # GitHub Action Part1 - Basics
 
 name: My-GitHubActions-Basics
+
 # Задаём глобальные переменные
 env:
-  Application_name: "MyFlask""
-  Package_name    : "Flask-deploy-ver-${{ github.sha }}"
+  Application_name: "MyFlask"
+  Package_name: "Flask-deploy-ver-${{ github.sha }}"
   
 on:
   push:
     branches: [ "main" ]
- 
-
+  
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -18,21 +18,25 @@ jobs:
   my_testing:
     runs-on: ubuntu-latest
     steps:
-      - name: Print Hello Massage
-       run: echo Hello, world!
+      - name: Print Hello Message
+        run: echo Hello, world!
         
-      - name: Execure few commands
+      - name: Execute few commands
         run: |
-       echo Hello Message1
-       echo Hello Message2
-       echo "Application Name: ${{ env.Application_name }}"
+          echo Hello Message1
+          echo Hello Message2
+          echo "Application Name: ${{ env.Application_name }}"
+          echo "Package Name: ${{ env.Package_name }}"
 
   my_deploy:
     runs-on: ubuntu-latest
-    #запуск второго джоба только после выполнения первого
+    # Запуск второго джоба только после выполнения первого
     needs: my_testing
     steps:
       - name: Print Hello Message in Deploy
         run: echo Hello World Deploy
-
-     
+      
+      - name: Show environment variables
+        run: |
+          echo "Application: ${{ env.Application_name }}"
+          echo "Package: ${{ env.Package_name }}"
